@@ -1,0 +1,99 @@
+
+html, body {
+   height: 100%;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+}
+body {
+    background-color: #070505;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    --button-container-columns: 400px 400px;
+    --main-container-columns: 50% 50%;
+
+ }
+ @media only screen and (max-width: 1350px){
+   body {
+
+   --main-container-columns: 100%;
+   --button-container-columns: 50% 50%;
+   }
+}
+
+img {
+   width: 95%;
+   height: 95%;
+   border-radius: 10px;
+   border: 2px solid rgb(252, 243, 243)
+}
+ .main-container {
+    display: grid;
+    grid-template-columns:  var(--main-container-columns);
+    justify-content: center;
+    padding: 10px;
+ }
+
+ .video-container {
+   display: flex;
+   width: 100%;
+   height: auto;
+   /*padding: 10px;*/
+}
+
+ .button-container {
+    display: grid;
+    grid-template-columns:  var(--button-container-columns);
+    /*grid-template-columns:  50% 50%;*/
+    justify-content: center;
+    padding: 10px;
+ }
+.button-card {
+    position: relative;
+    max-height: 500px;
+    min-width: 100px;
+    aspect-ratio: 1;
+ }
+ .image {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    -webkit-mask: url('lightbulb-group.svg') no-repeat center / contain;
+    mask: url('lightbulb-group.svg') no-repeat center / contain;
+    top:0;
+    right:70px;
+
+
+}
+
+ .card-back {
+   
+    background-color: #1c1c1c;
+    text-align: center;
+    border-radius: 10px;
+    margin: 6px;
+    border: 1px solid #343434;
+    vertical-align: sub;
+    aspect-ratio: 1;
+ }
+ .text {
+   position: absolute;
+   bottom: 60px;
+   width: 100%;
+   font-size: 35px;
+   color: white;
+   text-align: center;
+   box-sizing: border-box;
+}
+.card-state {
+   position: absolute;
+   bottom: 25px;
+   width: 100%;
+   font-size: 15px;
+   color: white;
+   text-align: center;
+   box-sizing: border-box;
+}
+.image:hover ~ .card-back {background-color: #1e2021;}
+.text:hover + .card-back {background-color: #1e2021;}
+.card-back:hover {background-color: #1e2021;}

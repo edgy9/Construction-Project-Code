@@ -1,0 +1,105 @@
+
+html, body {
+   height: 100%;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+}
+body {
+    background-color: #070505;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    --container-columns: 450px 450px 450px;
+
+ }
+ @media only screen and (max-width: 1350px){
+   body {
+
+   --container-columns: 50% 50% ;
+   }
+}
+
+
+ .container {
+    display: grid;
+    grid-template-columns:  var(--container-columns);
+    /*grid-template-columns:  50% 50%;*/
+    justify-content: center;
+    padding: 10px;
+ }
+.button-card {
+    position: relative;
+    max-width: 500px;
+    min-width: 100px;
+    aspect-ratio: 1;
+    width:auto;
+
+ }
+ .spots-image {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    -webkit-mask: url('lightbulb-group.svg') no-repeat center / contain;
+    mask: url('lightbulb-group.svg') no-repeat center / contain;
+    top:0;
+    right:70px;
+}
+.pendant-image {
+   position: absolute;
+   width: 300px;
+   height: 300px;
+   -webkit-mask: url('ceiling-light.svg') no-repeat center / contain;
+   mask: url('ceiling-light.svg') no-repeat center / contain;
+   top:0;
+   right:70px;
+}
+.lamps-image {
+   position: absolute;
+   width: 300px;
+   height: 300px;
+   -webkit-mask: url('lamps.svg') no-repeat center / contain;
+   mask: url('lamps.svg') no-repeat center / contain;
+   top:0;
+   right:70px;
+}
+.led-strip-image {
+   position: absolute;
+   width: 300px;
+   height: 300px;
+   -webkit-mask: url('led-strip-variant.svg') no-repeat center / contain;
+   mask: url('led-strip-variant.svg') no-repeat center / contain;
+   top:0;
+   right:70px;
+}
+
+ .card-back {
+   
+    background-color: #1c1c1c;
+    text-align: center;
+    border-radius: 10px;
+    margin: 6px;
+    border: 1px solid #343434;
+    vertical-align: sub;
+    aspect-ratio: 1;
+ }
+ .text {
+   position: absolute;
+   bottom: 60px;
+   width: 100%;
+   font-size: 35px;
+   color: white;
+   text-align: center;
+   box-sizing: border-box;
+}
+.card-state {
+   position: absolute;
+   bottom: 25px;
+   width: 100%;
+   font-size: 15px;
+   color: white;
+   text-align: center;
+   box-sizing: border-box;
+}
+.image:hover ~ .card-back {background-color: #1e2021;}
+.text:hover + .card-back {background-color: #1e2021;}
+.card-back:hover {background-color: #1e2021;}

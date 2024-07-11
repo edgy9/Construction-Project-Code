@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Automation</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='home.css')}}">
+    <script>
+        async function toggleDevice(device) {
+            const response = await fetch(`/toggle/${device}`, { method: 'POST' });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById(`${device}-state`).innerText = result.state ? 'On' : 'Off';
+                document.getElementById(`${device}-icon`).style= result.state ? "background-color: yellow" : "background-color: rgb(95,95,95)" ;
+            } else {
+                alert('Failed to toggle device');
+            }
+        }
+       
+
+    </script>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
+</head>
+<body>
+    <div class="container">
+        <div class="link-card" onclick="location.href = '/lights';">
+            <div class="card-back" >
+                <img src="{{ url_for('static', filename='lightbulb-group.svg')}}" class="white-image">
+                <div class="text" >Lights</div>
+            </div>
+        </div>
+        <div class="link-card" onclick="location.href = '/security';">
+            <div class="card-back" >
+                <img src="{{ url_for('static', filename='lock.svg')}}" class="white-image">
+                <div class="text" >Security</div>
+            </div>
+        </div>
+        <div class="link-card" onclick="location.href = '/blinds';">
+            <div class="card-back" >
+                <img src="{{ url_for('static', filename='blinds.svg')}}" class="white-image">
+                <div class="text" >Blinds</div>
+            </div>
+        </div>
+        <div class="link-card" onclick="location.href = '/watch';">
+            <div class="card-back" >
+                <img src="{{ url_for('static', filename='multimedia.svg')}}" class="white-image">
+                <div class="text" >watch</div>
+            </div>
+        </div>
+        <div class="link-card" onclick="location.href = '/heat';">
+            <div class="card-back" >
+                <img src="{{ url_for('static', filename='thermometer.svg')}}" class="white-image">
+                <div class="text" >heat</div>
+            </div>
+        </div>
+        <div class="link-card" onclick="location.href = '/energy';">
+            <div class="card-back" >
+                <img src="{{ url_for('static', filename='lightning-bolt.svg')}}" class="white-image">
+                <div class="text" >Energy</div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+
+
+</html>

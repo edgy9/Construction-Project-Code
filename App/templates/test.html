@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Automation</title>
+    <script>
+        async function toggleDevice(device) {
+            const response = await fetch(`/toggle/${device}`, { method: 'POST' });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById(`${device}-state`).innerText = result.state ? 'On' : 'Off';
+            } else {
+                alert('Failed to toggle device');
+            }
+        }
+
+        async function setThermostat() {
+            const temperature = document.getElementById('thermostat-input').value;
+            const formData = new FormData();
+            formData.append('temperature', temperature);
+            const response = await fetch('/set_thermostat', { method: 'POST', body: formData });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('thermostat-state').innerText = `${result.temperature} °C`;
+            } else {
+                alert('Failed to set thermostat');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Home Automation System</h1>
+    
+    <div>
+        <h2>Lights</h2>
+        <p>State: <span id="lights-state">{{ 'On' if devices['lights'] else 'Off' }}</span></p>
+        <button onclick="toggleDevice('lights')">Toggle Lights</button>
+    </div>
+    
+    <div>
+        <h2>Thermostat</h2>
+        <p>Current Temperature: <span id="thermostat-state">{{ devices['thermostat'] }} °C</span></p>
+        <input type="number" id="thermostat-input" placeholder="Set Temperature">
+        <button onclick="setThermostat()">Set Thermostat</button>
+    </div>
+    
+    <div>
+        <h2>Security System</h2>
+        <p>State: <span id="security-state">{{ 'On' if devices['security_system'] else 'Off' }}</span></p>
+        <button onclick="toggleDevice('security_system')">Toggle Security System</button>
+    </div>
+</body>
+</html>

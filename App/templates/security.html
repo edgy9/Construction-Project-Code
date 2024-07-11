@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Security</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='security.css')}}">
+    <script>
+        async function toggleDevice(device) {
+            const response = await fetch(`/toggle/${device}`, { method: 'POST' });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById(`${device}-state`).innerText = result.state ? 'On' : 'Off';
+                document.getElementById(`${device}-icon`).style= result.state ? "background-color: yellow" : "background-color: rgb(95,95,95)" ;
+            } else {
+                alert('Failed to toggle device');
+            }
+        }
+       
+
+    </script>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
+</head>
+<body>
+    <div class="main-container">
+        <div class="button-container">
+            <div class="button-card" onclick="toggleDevice('alarm-system')">
+                <div class="image" id="alarm-system-icon" style="background-color: {{ 'yellow' if devices['alarm-system'] else 'rgb(95,95,95)' }}"></div>
+                <div class="text" >Alarm</div>
+                <div class="card-back" ></div>
+                <div class="card-state" id="alarm-system-state">{{ 'On' if devices['alarm-system'] else 'Off' }}</div>
+            </div>
+        </div>
+        <div class="video-container">
+            <img src="/security/video_feed" />
+        </div>
+        
+    </div>
+    
+    
+</body>
+
+
+</html>

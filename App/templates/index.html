@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Automation</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='light-controls.css')}}">
+    <script>
+        async function toggleDevice(device) {
+            const response = await fetch(`/toggle/${device}`, { method: 'POST' });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById(`${device}-state`).innerText = result.state ? 'On' : 'Off';
+                document.getElementById(`${device}-icon`).style= result.state ? "background-color: yellow" : "background-color: rgb(95,95,95)" ;
+            } else {
+                alert('Failed to toggle device');
+            }
+        }
+       
+
+    </script>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
+</head>
+<body>
+    <div class="container">
+        <div class="button-card" onclick="toggleDevice('bedroom-spots')">
+            <div class="image" id="bedroom-spots-icon" style="background-color: {{ 'yellow' if devices['bedroom-spots'] else 'rgb(95,95,95)' }}"></div>
+            <div class="text" >Bedroom Spots</div>
+            <div class="card-back" ></div>
+            <div class="card-state" id="bedroom-spots-state">{{ 'On' if devices['bedroom-spots'] else 'Off' }}</div>
+        </div>
+    </div>
+    
+    
+</body>
+
+
+</html>

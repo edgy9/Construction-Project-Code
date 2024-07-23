@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bedroom Lights</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='light-controls.css')}}">
+    <script>
+        async function toggleLight(light) {
+            const response = await fetch(`/toggle-light/${light}`, { method: 'POST' });
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById(`${light}-state`).innerText = result.state ? 'On' : 'Off';
+                document.getElementById(`${light}-icon`).style= result.state ? "background-color: yellow" : "background-color: rgb(95,95,95)" ;
+            } else {
+                alert('Failed to toggle device');
+            }
+        }
+        function updateState() {
+            fetch('/light-state-status')
+                .then(response => response.json())
+                .then(data => {
+                    const bedroom_spots = document.getElementById('bedroom-spots-icon');
+                    if (data['bedroom-spots']) {
+                        bedroom_spots.style.backgroundColor = 'yellow';
+                    } else {
+                        bedroom_spots.style.backgroundColor = 'rgb(95, 95, 95)';
+                    }
+                    const bedroom_pendant = document.getElementById('bedroom-pendant-icon');
+                    if (data['bedroom-pendant']) {
+                        bedroom_pendant.style.backgroundColor = 'yellow';
+                    } else {
+                        bedroom_pendant.style.backgroundColor = 'rgb(95, 95, 95)';
+                    }
+                    const bedroom_accent = document.getElementById('bedroom-accent-icon');
+                    if (data['bedroom-accent']) {
+                        bedroom_accent.style.backgroundColor = 'yellow';
+                    } else {
+                        bedroom_accent.style.backgroundColor = 'rgb(95, 95, 95)';
+                    }
+                    const bedroom_lamps = document.getElementById('bedroom-lamps-icon');
+                    if (data['bedroom-lamps']) {
+                        bedroom_lamps.style.backgroundColor = 'yellow';
+                    } else {
+                        bedroom_lamps.style.backgroundColor = 'rgb(95, 95, 95)';
+                    }
+                });
+                
+        }
+        setInterval(updateState, 100);
+       
+
+    </script>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
+</head>
+<body>
+    <div class="container">
+        <div class="button-card" onclick="toggleLight('bedroom-spots')">
+            <div class="spots-image" id="bedroom-spots-icon" style="background-color: {{ 'yellow' if lights['bedroom-spots'] else 'rgb(95,95,95)' }}"></div>
+            <div class="text" >Spots</div>
+            <div class="card-back" ></div>
+            <div class="card-state" id="bedroom-spots-state">{{ 'On' if lights['bedroom-spots'] else 'Off' }}</div>
+        </div>
+        <div class="button-card" onclick="toggleLight('bedroom-pendant')">
+            <div class="pendant-image" id="bedroom-pendant-icon" style="background-color: {{ 'yellow' if lights['bedroom-pendant'] else 'rgb(95,95,95)' }}"></div>
+            <div class="text" >Pendant</div>
+            <div class="card-back" ></div>
+            <div class="card-state" id="bedroom-pendant-state">{{ 'On' if lights['bedroom-pendant'] else 'Off' }}</div>
+        </div>
+        <div class="button-card" onclick="toggleLight('bedroom-accent')">
+            <div class="led-strip-image" id="bedroom-accent-icon" style="background-color: {{ 'yellow' if lights['bedroom-accent'] else 'rgb(95,95,95)' }}"></div>
+            <div class="text" >Accent Lighting</div>
+            <div class="card-back" ></div>
+            <div class="card-state" id="bedroom-accent-state">{{ 'On' if lights['bedroom-accent'] else 'Off' }}</div>
+        </div>
+        <div class="button-card" onclick="toggleLight('bedroom-lamps')">
+            <div class="lamps-image" id="bedroom-lamps-icon" style="background-color: {{ 'yellow' if lights['bedroom-lamps'] else 'rgb(95,95,95)' }}"></div>
+            <div class="text" >Lamps</div>
+            <div class="card-back" ></div>
+            <div class="card-state" id="bedroom-lamps-state">{{ 'On' if lights['bedroom-lamps'] else 'Off' }}</div>
+        </div>
+    </div>
+    
+    
+</body>

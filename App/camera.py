@@ -12,10 +12,15 @@ class VideoCamera(object):
         self.video.release()        
 
     def get_frame(self):
-        ret, frame = self.video.read()
-
-        # DO WHAT YOU WANT WITH TENSORFLOW / KERAS AND OPENCV
-
-        ret, jpeg = cv2.imencode('.jpg', frame)
-
-        return jpeg.tobytes()
+        success, frame = self.video.read()
+        if not success:
+            raise RuntimeError("Failed to capture image")
+        ret, buffer = cv2.imencode('.jpg', frame)
+        if not ret:
+            raise RuntimeError("Failed to encode image")
+        return buffer.tobytes()
+    def generate_frames(self):
+        while True:
+            frame = self.get_frame()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')

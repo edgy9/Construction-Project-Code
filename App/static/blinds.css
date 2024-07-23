@@ -1,0 +1,200 @@
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: Rgb(7,5,5);
+}
+  
+  img {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+  }
+  .MainCenterContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  .MainContainer {
+    position: relative;
+    width: 750px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    
+  }
+  .ThirdContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 10% 10% 70% 10%;
+  }
+  .LabelContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 26px;
+    
+  }
+  .CenterContainer {
+    display: flex;
+    justify-content: center;
+    
+    
+  }
+
+  
+  .slider-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    left:8px
+    
+}
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60vh; 
+  height: 2px; /* Adjust the thickness of the slider */
+  background: #ec0a0a00;
+  outline: none;
+  opacity: 1;
+  transition: opacity .2s;
+  position: absolute;
+  transform: rotate(-90deg); /* Rotate the slider to make it vertical */
+  transform-origin: center center;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px; /* Adjust the width of the thumb */
+  height: 16px; /* Adjust the height of the thumb */
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+  
+}
+
+.slider::-moz-range-thumb {
+  width: 40px;
+  height: 20px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+  
+}
+.ghostslider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60vh; 
+  height: 2px; /* Adjust the thickness of the slider */
+  background: #ec0a0a00;
+  outline: none;
+  opacity: 1;
+  transition: opacity .2s;
+  position: absolute;
+  transform: rotate(-90deg); /* Rotate the slider to make it vertical */
+  transform-origin: center center;
+}
+
+.ghostslider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; /* Adjust the width of the thumb */
+  height: 20px; /* Adjust the height of the thumb */
+  background: rgb(65, 63, 63);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+.ghostslider::-moz-range-thumb {
+  width: 40px;
+  height: 20px;
+  background: rgb(65, 63, 63);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #333;
+}
+
+  .Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 26px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    margin: 6px;
+    border: 1px solid #343434;
+    width: 110px
+  }
+  .BlindContainer {
+    position: absolute;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    margin: 6px;
+    border: 1px solid #343434;
+    width: 110px;
+    height: 68.5%
+  } 
+  .BlindRoller {
+    fill: white;
+  }
+  .BlindRollerInner {
+    fill: #1c1c1c;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  @media (max-width: 600px) {
+    .MainContainer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        font-size: 18px;
+    }
+    .parent .box {
+      font-size: 16px;
+    }
+}
+@media (max-height: 400px) {
+  .MainContainer {
+      height: 100%;
+      width: 300px;
+      margin: 10px;
+      
+    }
+    .parent .box {
+      font-size: 16px;
+    }
+  }
+
+#sitting-room-blind-command {
+    z-index: 2; /* Ensure it's on top of the first slider */
+    
+}
+
+#sitting-room-blind-state {
+    
+    z-index: 1; /* Ensure it's under the second slider */
+}

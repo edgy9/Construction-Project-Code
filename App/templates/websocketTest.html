@@ -10,7 +10,7 @@
     <div id="message-container">Connecting...</div>
     <script>
         // Replace '192.168.11.1' with the actual IP address of your server on the ad hoc network
-        const socket = io('http://192.168.11.1:5000');
+        const socket = io('http://192.168.11.1');
 
         socket.on('connect', () => {
             document.getElementById('message-container').textContent = 'Connected to server';

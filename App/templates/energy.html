@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Usage Dashboard</title>
+    <script src="/static/FrontendWebsocket.js"></script>
+    <link rel="stylesheet" href="/static/energy.css">
+    
+</head>
+<body>
+<div class="centerParent">
+    <div class="parent">
+    <div class="box wind" id= "windstat">10.4kW</div>
+    <div class="box solar" id= "solarstat">2.5kW</div>
+    <div class="box home" id= "homestat" >20kW</div>
+    <div class="box grid" id= "gridstat">-8.3kW</div>
+    <div class="box gridcost" id= "gridcoststat">$4.32</div>
+    <img src="/static/energy.png" alt=""/>
+    </div>
+</div>
+<div id="page" data-page="energy"></div>
+</body>
+</html>

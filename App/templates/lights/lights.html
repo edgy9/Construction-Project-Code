@@ -3,61 +3,29 @@
 <head>
     <title>Home Automation</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='home.css')}}">
-    <script>
-        function updateState() {
-            fetch('/light-state-status')
-                .then(response => response.json())
-                .then(data => {
-                    const kitchen_lights = document.getElementById('kitchen-lights-icon');
-                    if (data['kitchen-spots'] || data['kitchen-pendant'] || data['kitchen-accent'] || data['kitchen-counter']) {
-                        kitchen_lights.style.backgroundColor = 'yellow';
-                        
-                    } else {
-                        kitchen_lights.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const sitting_room_lights = document.getElementById('sitting-room-lights-icon');
-                    if (data['sitting-room-spots'] || data['sitting-room-pendant'] || data['sitting-room-accent'] || data['sitting-room-lamps']){
-                        sitting_room_lights.style.backgroundColor = 'yellow';
-                        
-                    } else {
-                        sitting_room_lights.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const bedroom_lights = document.getElementById('bedroom-lights-icon');
-                    if (data['bedroom-spots'] || data['bedroom-pendant'] || data['bedroom-accent'] || data['bedroom-lamps']){
-                        bedroom_lights.style.backgroundColor = 'yellow';
-                        
-                    } else {
-                        bedroom_lights.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-
-                    });
-                
-        }
-        setInterval(updateState, 100);
-
-    
-    </script>
+    <script src="/static/FrontendWebsocket.js"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="link-card" onclick="location.href = '/kitchen-lights';">
-            <div class="room-lights-image"id="kitchen-lights-icon" style="background-color: {{ 'yellow' if lights['kitchen-spots'] or lights['kitchen-pendant'] or lights['kitchen-accent'] or lights['kitchen-counter'] else 'rgb(95,95,95)' }}"></div>
+            <div class="room-lights-image"id="kitchen_lights-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Kitchen</div>
-            <div class="card-back" ></div>
+            <div class="card-back" id="kitchen_lights-state" style="color: #1c1c1c"></div>
         </div>
 
         <div class="link-card" onclick="location.href = '/sitting-room-lights';">
-            <div class="room-lights-image"id="sitting-room-lights-icon" style="background-color: {{ 'yellow' if lights['sitting-room-spots'] or lights['sitting-room-pendant'] or lights['sitting-room-accent'] or lights['sitting-room-counter'] else 'rgb(95,95,95)' }}"></div>
+            <div class="room-lights-image"id="sitting_room_lights-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Sitting Room</div>
-            <div class="card-back" ></div>
+            <div class="card-back" id="sitting_room_lights-state" style="color: #1c1c1c" ></div>
         </div>
         <div class="link-card" onclick="location.href = '/bedroom-lights';">
-            <div class="room-lights-image"id="bedroom-lights-icon" style="background-color: {{ 'yellow' if lights['bedroom-spots'] or lights['bedroom-pendant'] or lights['bedroom-accent'] or lights['bedroom-counter'] else 'rgb(95,95,95)' }}"></div>
+            <div class="room-lights-image"id="bedroom_lights-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Bedroom</div>
-            <div class="card-back" ></div>
+            <div class="card-back" id="bedroom_lights-state" style="color: #1c1c1c"></div>
         </div>
     </div>
+    <div id="page" data-page="light_rooms"></div>
     
     
 </body>

@@ -14,7 +14,7 @@ devices = {
 
 @app.route('/')
 def index():
-    return render_template('test.html', devices=devices)
+    return render_template('index.html', devices=devices)
 
 @app.route('/toggle/<device>', methods=['POST'])
 def toggle_device(device):

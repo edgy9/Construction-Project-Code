@@ -3,80 +3,36 @@
 <head>
     <title>Sitting Room Lights</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='light-controls.css')}}">
-    <script>
-        async function toggleLight(light) {
-            const response = await fetch(`/toggle-light/${light}`, { method: 'POST' });
-            const result = await response.json();
-            if (result.success) {
-                document.getElementById(`${light}-state`).innerText = result.state ? 'On' : 'Off';
-                document.getElementById(`${light}-icon`).style= result.state ? "background-color: yellow" : "background-color: rgb(95,95,95)" ;
-            } else {
-                alert('Failed to toggle device');
-            }
-        }
-        function updateState() {
-            fetch('/light-state-status')
-                .then(response => response.json())
-                .then(data => {
-                    const sitting_room_spots = document.getElementById('sitting-room-spots-icon');
-                    if (data['sitting-room-spots']) {
-                        sitting_room_spots.style.backgroundColor = 'yellow';
-                    } else {
-                        sitting_room_spots.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const sitting_room_pendant = document.getElementById('sitting-room-pendant-icon');
-                    if (data['sitting-room-pendant']) {
-                        sitting_room_pendant.style.backgroundColor = 'yellow';
-                    } else {
-                        sitting_room_pendant.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const sitting_room_accent = document.getElementById('sitting-room-accent-icon');
-                    if (data['sitting-room-accent']) {
-                        sitting_room_accent.style.backgroundColor = 'yellow';
-                    } else {
-                        sitting_room_accent.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const sitting_room_lamps = document.getElementById('sitting-room-lamps-icon');
-                    if (data['sitting-room-lamps']) {
-                        sitting_room_lamps.style.backgroundColor = 'yellow';
-                    } else {
-                        sitting_room_lamps.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                });
-                
-        }
-        setInterval(updateState, 100);
-       
-
-    </script>
+    <script src="/static/FrontendWebsocket.js"></script>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
 </head>
 <body>
     <div class="container">
         <div class="button-card" onclick="toggleLight('sitting-room-spots')">
-            <div class="spots-image" id="sitting-room-spots-icon" style="background-color: {{ 'yellow' if lights['sitting-room-spots'] else 'rgb(95,95,95)' }}"></div>
+            <div class="spots-image" id="sitting-room-spots-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Spots</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="sitting-room-spots-state">{{ 'On' if lights['sitting-room-spots'] else 'Off' }}</div>
+            <div class="card-state" id="sitting-room-spots-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('sitting-room-pendant')">
-            <div class="pendant-image" id="sitting-room-pendant-icon" style="background-color: {{ 'yellow' if lights['sitting-room-pendant'] else 'rgb(95,95,95)' }}"></div>
+            <div class="pendant-image" id="sitting-room-pendant-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Pendant</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="sitting-room-pendant-state">{{ 'On' if lights['sitting-room-pendant'] else 'Off' }}</div>
+            <div class="card-state" id="sitting-room-pendant-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('sitting-room-accent')">
-            <div class="led-strip-image" id="sitting-room-accent-icon" style="background-color: {{ 'yellow' if lights['sitting-room-accent'] else 'rgb(95,95,95)' }}"></div>
+            <div class="led-strip-image" id="sitting-room-accent-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Accent Lighting</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="sitting-room-accent-state">{{ 'On' if lights['sitting-room-accent'] else 'Off' }}</div>
+            <div class="card-state" id="sitting-room-accent-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('sitting-room-lamps')">
-            <div class="lamps-image" id="sitting-room-lamps-icon" style="background-color: {{ 'yellow' if lights['sitting-room-lamps'] else 'rgb(95,95,95)' }}"></div>
+            <div class="lamps-image" id="sitting-room-lamps-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Lamps</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="sitting-room-lamps-state">{{ 'On' if lights['sitting-room-lamps'] else 'Off' }}</div>
+            <div class="card-state" id="sitting-room-lamps-state">Loading</div>
         </div>
+        <div id="page" data-page="sitting_room_lights"></div>
     </div>
     
     

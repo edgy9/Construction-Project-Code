@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, jsonify,Response
+from flask import Flask, render_template, request, jsonify, Response
 from camera import VideoCamera
-import cv2
 
 
 app = Flask(__name__)
 
+camera = VideoCamera()
 
 devices = {
     "bedroom-spots": True,
@@ -29,15 +29,7 @@ lights = {
 
 
 
-video_stream = VideoCamera()
 
-
-
-@app.route('/light-state-status')
-def light_state_status():
-    app.logger.warning('light state queried')
-    app.logger.warning(lights)
-    return jsonify(lights)
 
 
 @app.route('/index')
@@ -75,16 +67,11 @@ def bedroom_lights():
 def security():
     return render_template('security.html', devices=devices)
 
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 @app.route('/security/video_feed')
 def video_feed():
-     return Response(gen(video_stream),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')        
+    return Response(camera.generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 
 
@@ -109,28 +96,7 @@ def heat():
 def energy():
     return render_template('energy.html', devices=devices)
 
-@app.route('/toggle-light/<light>', methods=['POST'])
-def toggle_light(light):
-    if light in lights:
-        lights[light] = not lights[light] if isinstance(lights[light], bool) else lights[light]
-        #print("changed state")
-        app.logger.warning('light Toggled')
-        app.logger.warning(lights[light])
-        return jsonify(success=True, state=lights[light])
-    return jsonify(success=False)
 
-
-
-
-@app.route('/toggle/<device>', methods=['POST'])
-def toggle_device(device):
-    if device in devices:
-        devices[device] = not devices[device] if isinstance(devices[device], bool) else devices[device]
-        #print("changed state")
-        app.logger.warning('light Toggled')
-        app.logger.warning(devices[device])
-        return jsonify(success=True, state=devices[device])
-    return jsonify(success=False)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',debug=True)

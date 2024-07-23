@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: Rgb(7,5,5);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  width: 100%;
+}
+.centerParent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.parent {
+  position: relative;
+  width: 816px;
+  height: 800px;
+}
+.parent .box {
+  position: absolute;
+  width: calc(1.6vw + 10px); height: calc(1.6vw + 10px);
+  font-size: 22px;
+  color: white;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+.parent .box.grid {
+  top: 88%;
+  left: 82.7%;
+}
+.parent .box.gridcost {
+  top: 91%;
+  left: 82.7%;
+  font-size: 16px;
+  opacity: 70%;
+}
+.parent .box.home {
+  top: 64%;
+  left: 48%;
+}
+.parent .box.solar {
+  top: 21%;
+  left: 48%;
+}
+.parent .box.wind {
+  top: 88%;
+  left: 12.3%;
+}
+@media (max-width: 600px) {
+  .parent {
+      width: 100%;
+      height: auto;
+      margin: 10px;
+      font-size: 18px;
+  }
+  .parent .box {
+    font-size: 16px;
+  }
+}
+@media (max-height: 400px) {
+.parent {
+    height: 100%;
+    width: auto;
+    margin: 10px;
+    
+  }
+  .parent .box {
+    font-size: 16px;
+  }
+}

@@ -3,79 +3,36 @@
 <head>
     <title>Home Automation</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='light-controls.css')}}">
-    <script>
-        async function toggleLight(light) {
-            const response = await fetch(`/toggle-light/${light}`, { method: 'POST' });
-            const result = await response.json();
-            if (result.success) {
-                document.getElementById(`${light}-state`).innerText = result.state ? 'On' : 'Off';
-                document.getElementById(`${light}-icon`).style= result.state ? "background-color: yellow" : "background-color: rgb(95,95,95)" ;
-            } else {
-                alert('Failed to toggle device');
-            }
-        }
-        function updateState() {
-            fetch('/light-state-status')
-                .then(response => response.json())
-                .then(data => {
-                    const kitchen_spots = document.getElementById('kitchen-spots-icon');
-                    if (data['kitchen-spots']) {
-                        kitchen_spots.style.backgroundColor = 'yellow';
-                    } else {
-                        kitchen_spots.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const kitchen_pendant = document.getElementById('kitchen-pendant-icon');
-                    if (data['kitchen-pendant']) {
-                        kitchen_pendant.style.backgroundColor = 'yellow';
-                    } else {
-                        kitchen_pendant.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const kitchen_accent = document.getElementById('kitchen-accent-icon');
-                    if (data['kitchen-accent']) {
-                        kitchen_accent.style.backgroundColor = 'yellow';
-                    } else {
-                        kitchen_accent.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                    const kitchen_counter = document.getElementById('kitchen-counter-icon');
-                    if (data['kitchen-counter']) {
-                        kitchen_counter.style.backgroundColor = 'yellow';
-                    } else {
-                        kitchen_counter.style.backgroundColor = 'rgb(95, 95, 95)';
-                    }
-                });
-                
-        }
-        setInterval(updateState, 100);
-
-    </script>
+    <script src="/static/FrontendWebsocket.js"></script>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
 </head>
 <body>
     <div class="container">
         <div class="button-card" onclick="toggleLight('kitchen-spots')">
-            <div class="spots-image" id="kitchen-spots-icon" style="background-color: {{ 'yellow' if lights['kitchen-spots'] else 'rgb(95,95,95)' }}"></div>
+            <div class="spots-image" id="kitchen-spots-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Spots</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="kitchen-spots-state">{{ 'On' if lights['kitchen-spots'] else 'Off' }}</div>
+            <div class="card-state" id="kitchen-spots-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('kitchen-pendant')">
-            <div class="pendant-image" id="kitchen-pendant-icon" style="background-color: {{ 'yellow' if lights['kitchen-pendant'] else 'rgb(95,95,95)' }}"></div>
+            <div class="pendant-image" id="kitchen-pendant-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Pendant</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="kitchen-pendant-state">{{ 'On' if lights['kitchen-pendant'] else 'Off' }}</div>
+            <div class="card-state" id="kitchen-pendant-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('kitchen-accent')">
-            <div class="led-strip-image" id="kitchen-accent-icon" style="background-color: {{ 'yellow' if lights['kitchen-accent'] else 'rgb(95,95,95)' }}"></div>
+            <div class="led-strip-image" id="kitchen-accent-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Accent Lighting</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="kitchen-accent-state">{{ 'On' if lights['kitchen-accent'] else 'Off' }}</div>
+            <div class="card-state" id="kitchen-accent-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('kitchen-counter')">
-            <div class="led-strip-image" id="kitchen-counter-icon" style="background-color: {{ 'yellow' if lights['kitchen-counter'] else 'rgb(95,95,95)' }}"></div>
+            <div class="led-strip-image" id="kitchen-counter-icon" style="background-color: rgb(95,95,95)"></div>
             <div class="text" >Counter Lighting</div>
             <div class="card-back" ></div>
-            <div class="card-state" id="kitchen-counter-state">{{ 'On' if lights['kitchen-counter'] else 'Off' }}</div>
+            <div class="card-state" id="kitchen-counter-state">Loading</div>
         </div>
+        <div id="page" data-page="kitchen_lights"></div>
     </div>
     
     

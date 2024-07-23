@@ -35,6 +35,8 @@ video_stream = VideoCamera()
 
 @app.route('/light-state-status')
 def light_state_status():
+    app.logger.warning('light state queried')
+    app.logger.warning(lights)
     return jsonify(lights)
 
 
@@ -112,6 +114,8 @@ def toggle_light(light):
     if light in lights:
         lights[light] = not lights[light] if isinstance(lights[light], bool) else lights[light]
         #print("changed state")
+        app.logger.warning('light Toggled')
+        app.logger.warning(lights[light])
         return jsonify(success=True, state=lights[light])
     return jsonify(success=False)
 
@@ -123,8 +127,10 @@ def toggle_device(device):
     if device in devices:
         devices[device] = not devices[device] if isinstance(devices[device], bool) else devices[device]
         #print("changed state")
+        app.logger.warning('light Toggled')
+        app.logger.warning(devices[device])
         return jsonify(success=True, state=devices[device])
     return jsonify(success=False)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Example</title>
+    <!-- Load the Socket.IO client library locally -->
+    <script src="/static/js/socket.io.min.js"></script>
+</head>
+<body>
+    <div id="message-container">Connecting...</div>
+    <script>
+        // Replace '192.168.11.1' with the actual IP address of your server on the ad hoc network
+        const socket = io('http://192.168.11.1:5000');
+
+        socket.on('connect', () => {
+            document.getElementById('message-container').textContent = 'Connected to server';
+            socket.send('Hello Server');
+        });
+
+        socket.on('response', (data) => {
+            document.getElementById('message-container').textContent = `Server says: ${data.data}`;
+        });
+
+        socket.on('disconnect', () => {
+            document.getElementById('message-container').textContent = 'Disconnected from server';
+        });
+    </script>
+</body>
+</html>

@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
+
+
 # Simulated state of devices
 devices = {
     "lights": False,
@@ -18,6 +20,8 @@ def index():
 def toggle_device(device):
     if device in devices:
         devices[device] = not devices[device] if isinstance(devices[device], bool) else devices[device]
+        app.logger.warning('light Toggled')
+        app.logger.warning(devices[device])
         return jsonify(success=True, state=devices[device])
     return jsonify(success=False)
 
@@ -31,4 +35,4 @@ def set_thermostat():
         return jsonify(success=False)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')

@@ -1,9 +1,12 @@
 
   * {
+    
+    
     box-sizing: border-box;
     margin: 0;
   }
   body, html {
+    overflow: hidden;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -13,11 +16,6 @@
     background-color: Rgb(7,5,5);
 }
   
-  img {
-    max-width: 100%;
-    display: block;
-    width: 100%;
-  }
   .MainCenterContainer {
     width: 100%;
     height: 100%;
@@ -45,6 +43,7 @@
     align-items: center;
     color: white;
     font-size: 26px;
+    text-align: center
     
   }
   .CenterContainer {
@@ -53,6 +52,18 @@
     
     
   }
+  .BlindContainer {
+    position: absolute;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    margin: 6px;
+    border: 1px solid #343434;
+    width: 110px;
+    height: 68.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
 
   
   .slider-container {
@@ -60,15 +71,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    left:8px
+    height: 85%;
+    width:100%;
+    left:10px;
+    top:3%;
     
 }
 .slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 60vh; 
-  height: 2px; /* Adjust the thickness of the slider */
+ 
+  height: 2px;
   background: #ec0a0a00;
   outline: none;
   opacity: 1;
@@ -131,63 +144,42 @@
   border: 2px solid #333;
 }
 
-  .Button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 26px;
-    background-color: #1c1c1c;
-    border-radius: 10px;
-    margin: 6px;
-    border: 1px solid #343434;
-    width: 110px
-  }
-  .BlindContainer {
-    position: absolute;
-    background-color: #1c1c1c;
-    border-radius: 10px;
-    margin: 6px;
-    border: 1px solid #343434;
-    width: 110px;
-    height: 68.5%
-  } 
-  .BlindRoller {
-    fill: white;
-  }
-  .BlindRollerInner {
-    fill: #1c1c1c;
-  }
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 26px;
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  margin: 6px;
+  border: 1px solid #343434;
+  width: 110px
+}
+  
 
-  svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-  @media (max-width: 600px) {
-    .MainContainer {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        font-size: 18px;
-    }
-    .parent .box {
-      font-size: 16px;
-    }
+.BlindRoller {
+  fill: white;
 }
-@media (max-height: 400px) {
+.BlindRollerInner {
+  fill: #1c1c1c;
+}
+@media (max-width: 600px) {
   .MainContainer {
+      width: 100%;
       height: 100%;
-      width: 300px;
-      margin: 10px;
-      
-    }
-    .parent .box {
-      font-size: 16px;
-    }
+      margin: 0;
   }
+}
+
 
 #sitting-room-blind-command {
     z-index: 2; /* Ensure it's on top of the first slider */

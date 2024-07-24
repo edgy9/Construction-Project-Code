@@ -41,31 +41,63 @@ const ws = new WebSocket("ws://192.168.1.130:6789");
             ws.send(`{"num_entities":0,"num_server_entities":1,"entities":[{"entity":"${entity}","state":${state}}],"reload":0,"page":"${document.getElementById("page").getAttribute("data-page")}"}`);
         }
         document.addEventListener('DOMContentLoaded', () => {
-            const slider1 = document.getElementById('sitting-room-blind-command');
-            const slider2 = document.getElementById('sitting-room-blind-state');
-            const line1 = document.getElementById('line1');
-            const line2 = document.getElementById('line2');
+            const SittingRoomBlindCommandSlider = document.getElementById('sitting-room-blind-command');
+            const SittingRoomBlindStateSlider = document.getElementById('sitting-room-blind-state');
+            const SittingRoomBlindCommandLine = document.getElementById('sitting-room-blind-command-line');
+            const SittingRoomBlindStateLine = document.getElementById('sitting-room-blind-state-line');
+            const SittingRoomBlindRoller = document.getElementById('sitting-room-blind-roller');
+            const SittingRoomBlindRollerInner = document.getElementById('sitting-room-blind-roller-inner');
 
             function UpdateBlinds() {
-                console.log("updating");
-                const containerRect = document.getElementById('test').getBoundingClientRect();
-                const slider1Rect = slider1.getBoundingClientRect();
-                const slider2Rect = slider2.getBoundingClientRect();
+                const SittingRoomSliderContainer = document.getElementById('sitting-room-slider-container').getBoundingClientRect();
+                const SittingRoomSVGContainer = document.getElementById('sitting-room-svg-container').getBoundingClientRect();
+                const SittingRoomBlindCommandRect = SittingRoomBlindCommandSlider.getBoundingClientRect();
+                const SittingRoomBlindStateRect = SittingRoomBlindStateSlider.getBoundingClientRect();
 
-                const slider1Y = window.innerHeight * 0.25 + ((100 - slider1.valueAsNumber) / slider1.max * slider1Rect.height);
-                
-                const slider2X = slider2Rect.left + slider2.valueAsNumber / slider2.max * slider2Rect.width;
-                const slider2Y = slider2Rect.top + slider2Rect.height / 2;
-                
-                console.log(slider1Y)
-                line1.setAttribute('y2', slider1Y);
-                line2.setAttribute('x2', slider2X);
-                line2.setAttribute('y2', slider2Y);
+
+            /*                       ------- Set Slider Stuff -------                       */
+
+
+                SittingRoomBlindCommandSlider.style.width = SittingRoomSliderContainer.height + "px"
+                SittingRoomBlindStateSlider.style.width = SittingRoomSliderContainer.height + "px"
+
+            /*                       ------- Set Command Line Stuff -------                       */
+
+                const SittingRoomBlindCommandLineY1 = window.innerHeight * 0.28;
+                const SittingRoomBlindCommandLineY2 = window.innerHeight * 0.28 + ((100 - SittingRoomBlindCommandSlider.valueAsNumber) / SittingRoomBlindCommandSlider.max * SittingRoomBlindCommandRect.height);
+                const SittingRoomBlindCommandLineX = ((SittingRoomSVGContainer.width * 0.5)+12) + "px"
+
+                SittingRoomBlindCommandLine.setAttribute('y1', SittingRoomBlindCommandLineY1);
+                SittingRoomBlindCommandLine.setAttribute('y2', SittingRoomBlindCommandLineY2);
+                SittingRoomBlindCommandLine.setAttribute('x1', SittingRoomBlindCommandLineX);
+                SittingRoomBlindCommandLine.setAttribute('x2', SittingRoomBlindCommandLineX);
+
+            /*                       ------- Set State Line Stuff -------                       */
+
+            const SittingRoomBlindStateLineY1 = window.innerHeight * 0.30;
+            const SittingRoomBlindStateLineY2 = window.innerHeight * 0.30 + ((100 - SittingRoomBlindStateSlider.valueAsNumber) / SittingRoomBlindStateSlider.max * SittingRoomBlindStateRect.height);
+            const SittingRoomBlindStateLineX = ((SittingRoomSVGContainer.width * 0.5)+12) + "px"
+
+            SittingRoomBlindStateLine.setAttribute('y1', SittingRoomBlindStateLineY1);
+            SittingRoomBlindStateLine.setAttribute('y2', SittingRoomBlindStateLineY2);
+            SittingRoomBlindStateLine.setAttribute('x1', SittingRoomBlindStateLineX);
+            SittingRoomBlindStateLine.setAttribute('x2', SittingRoomBlindStateLineX);
+            
+            /*                       ------- Set Roller Circles Stuff -------                       */
+            const SittingRoomBlindRollerY = window.innerHeight * 0.28;
+            const SittingRoomBlindRollerX = ((SittingRoomSVGContainer.width * 0.5)-5) + "px";
+            
+
+            SittingRoomBlindRoller.setAttribute('cx', SittingRoomBlindRollerX);
+            SittingRoomBlindRoller.setAttribute('cy', SittingRoomBlindRollerY);
+            SittingRoomBlindRollerInner.setAttribute('cx', SittingRoomBlindRollerX);
+            SittingRoomBlindRollerInner.setAttribute('cy', SittingRoomBlindRollerY);
+            
             }
-
-            slider1.addEventListener('input', UpdateBlinds);
-            slider2.addEventListener('input', UpdateBlinds);
+            SittingRoomBlindCommandSlider.addEventListener('input', UpdateBlinds);
+            SittingRoomBlindStateSlider.addEventListener('input', UpdateBlinds);
 
             window.addEventListener('resize', UpdateBlinds);
             window.addEventListener('load', UpdateBlinds);
+            
         });

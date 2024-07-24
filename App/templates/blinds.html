@@ -16,26 +16,26 @@
                 <div class="CenterContainer">
                     <div class="Button">Open</div>
                 </div>
-                <div class="CenterContainer" id="test">
+                <div class="CenterContainer" id="sitting-room-svg-container">
 
 
                     <div class="BlindContainer">
-                        <div class="slider-container">
+                        <div class="slider-container" id="sitting-room-slider-container">
                             <input type="range" min="1" max="100" value="30" class="slider" id="sitting-room-blind-command">
                         </div>
                     </div>
                     <div class="BlindContainer">
                         <div class="slider-container">
-                            <input type="range" min="1" max="100" value="50" class="ghostslider" id="sitting-room-blind-state">
+                            <input type="range" min="1" max="100" value="50" class="ghostslider" id="sitting-room-blind-state" disabled>
                         </div>
                     </div>
 
                     <svg>
                         
-                        <line id="line1" x1="calc(50% + 10px)" y1="25vh" x2="calc(50% + 10px)" y2="80%" style="stroke:white; stroke-width:6" />
-                        <line id="line2" x1="10" y1="20" x2="50" y2="20" stroke="black" />
-                        <circle class="BlindRoller" cx="calc(50% - 7px)" cy="25vh" r="20px"></circle>
-                        <circle class="BlindRollerInner" cx="calc(50% - 7px)" cy="25vh" r="15px"></circle>
+                        <line id="sitting-room-blind-command-line" x1="0" y1="0" x2="0" y2="0" style="stroke:white; stroke-width:6" />
+                        <line id="sitting-room-blind-state-line" x1="0" y1="0" x2="0" y2="0" stroke="gray" />
+                        <circle id="sitting-room-blind-roller" class="BlindRoller" cx="0" cy="0" r="20px"></circle>
+                        <circle id="sitting-room-blind-roller-inner" class="BlindRollerInner" cx="0" cy="0" r="15px"></circle>
                     </svg>
 
                 </div>

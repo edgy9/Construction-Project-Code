@@ -12,13 +12,41 @@ body {
     --container-columns: 450px 450px 450px;
 
  }
- @media only screen and (max-width: 1350px){
+ @media only screen and (max-width: 1350px) and (min-width: 1000px){
+   body {
+
+   --container-columns: 33.3% 33.3% 33.3% ;
+   }
+}
+ @media only screen and (max-width: 1000px){
    body {
 
    --container-columns: 50% 50% ;
    }
 }
+ .back-button-container {
+   position:absolute;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
 
+ }
+ .back-button {
+   z-index: 0;
+   stroke: black;
+   fill: black;
+ }
+
+ .back-image {
+   max-width: 300px;
+   max-height: 300px;
+   width: 100%;
+   height: 100%;
+   -webkit-mask: url('arrow-left-thick.svg') no-repeat center / contain;
+   mask: url('arrow-left-thick.svg') no-repeat center / contain;
+    
+}
 
  .container {
     display: grid;
@@ -35,41 +63,65 @@ body {
     width:auto;
 
  }
- .spots-image {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    -webkit-mask: url('lightbulb-group.svg') no-repeat center / contain;
-    mask: url('lightbulb-group.svg') no-repeat center / contain;
-    top:0;
-    right:70px;
+.image-grid-container {
+   position: absolute;
+   width:100%;
+   height: 100%;
+   
+
+}
+.image-grid {
+   display: grid;
+   width: 100%;
+   height: 100%;
+   grid-template-rows: 70% 100px;
+   justify-content: center;
+   align-content: end;
+
+}
+.image-container {
+   position: relative;
+   width:100%;
+   height: 100%;
+
+}
+.spots-image {
+   max-width: 300px;
+   max-height: 300px;
+   width: 100%;
+   height: 100%;
+   -webkit-mask: url('lightbulb-group.svg') no-repeat center / contain;
+   mask: url('lightbulb-group.svg') no-repeat center / contain;
+    
 }
 .pendant-image {
    position: absolute;
-   width: 300px;
-   height: 300px;
+   width: 100%;
+   height: 100%;
+   max-width: 300px;
+   max-height: 300px;
    -webkit-mask: url('ceiling-light.svg') no-repeat center / contain;
    mask: url('ceiling-light.svg') no-repeat center / contain;
-   top:0;
-   right:70px;
+  
 }
 .lamps-image {
    position: absolute;
-   width: 300px;
-   height: 300px;
+   max-width: 300px;
+   max-height: 300px;
    -webkit-mask: url('lamps.svg') no-repeat center / contain;
    mask: url('lamps.svg') no-repeat center / contain;
-   top:0;
-   right:70px;
+   height: 100%;
+   width: 100%;
 }
 .led-strip-image {
    position: absolute;
-   width: 300px;
-   height: 300px;
+   max-width: 300px;
+   max-height: 300px;
    -webkit-mask: url('led-strip-variant.svg') no-repeat center / contain;
    mask: url('led-strip-variant.svg') no-repeat center / contain;
-   top:0;
-   right:70px;
+   width: 100%;
+   height: 100%;
+
 }
 
  .card-back {
@@ -100,6 +152,6 @@ body {
    text-align: center;
    box-sizing: border-box;
 }
-.image:hover ~ .card-back {background-color: #1e2021;}
+.image-grid-container:hover ~ .card-back {background-color: #1e2021;}
 .text:hover + .card-back {background-color: #1e2021;}
 .card-back:hover {background-color: #1e2021;}

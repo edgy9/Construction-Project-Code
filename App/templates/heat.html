@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermostat</title>
+    <script type="text/javascript">
+        var URI = {{ URIdata|tojson }}
+    </script>
+    <link rel="stylesheet" href="static/heat.css">
+</head>
+<body>
+    <div class="MainContainer">
+        <div class="ThermostatContainer">
+            <div class="ThermostatWithTextContainer">
+                <div class="TextContainer">
+                    <div class="ThermostatText">Kitchen</div>
+                </div>
+                <div class="thermostat">
+                    <div class="slider-background">
+                        <div class="circle" id="circle"></div>
+                    </div>
+                    <svg id="kitchen-scale-svg"></svg>
+                    <div class="slider-container">
+                        <div class="knob" id="knob"></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ThermostatContainer">
+            <div class="ThermostatWithTextContainer">
+                <div class="TextContainer">
+                    <div class="ThermostatText">Kitchen</div>
+                </div>
+                <div class="thermostat">
+                    <div class="slider-container">
+                        <div class="circle" id="circle">
+                            <div class="knob" id="knob"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/heat.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: Rgb(7,5,5);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    pointer-events: none;
+}
+.MainContainer {
+    height: 100%;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.ThermostatContainer {
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.ThermostatWithTextContainer {
+    position: relative;
+    display: grid;
+    height: 70vh;
+    bottom: 10vh;
+    grid-template-rows: 15% 85%;
+    justify-content: center;
+    align-items: center;
+}
+
+.TextContainer {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.ThermostatText {
+    position: relative;
+    color: white;
+    font-size: 26px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    border: 1px solid #343434;
+    width: 60%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.thermostat {
+    position: relative;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    background: #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: absolute;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+@media (max-width: 600px) {
+    .MainContainer {
+        grid-template-columns: 50vh;
+    }
+    .ThermostatWithTextContainer {
+        height: 100%;
+        width: 80vw;
+        bottom: 0vh;
+        top: 1vh;
+    }
+    .thermostat {
+        width: 37vh;
+        height: 37vh;
+        bottom: 1vh;
+    }
+    .ThermostatText {
+        height: 100%;
+        width: 100%;
+    }
+  }
+
+
+.slider-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.slider-background {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.circle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #343434;;
+    box-sizing: border-box;
+    background: #1c1c1c;
+}
+
+.knob {
+    position: absolute;
+    width: 3px;
+    height: 20px;
+    background-color: #FFFF;
+    top: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    cursor: pointer;
+    transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.center-circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff5722;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.temperature-display {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}

@@ -3,31 +3,62 @@
 <head>
     <title>Home Automation</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='light-controls.css')}}">
+    <script type="text/javascript">
+        var URI = {{ URIdata|tojson }}
+    </script>
     <script src="/static/FrontendWebsocket.js"></script>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
 </head>
 <body>
     <div class="container">
         <div class="button-card" onclick="toggleLight('kitchen-spots')">
-            <div class="spots-image" id="kitchen-spots-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="spots-image" id="kitchen-spots-icon" style="background-color: rgb(95,95,95)"></div>
+                    </div>
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Spots</div>
             <div class="card-back" ></div>
             <div class="card-state" id="kitchen-spots-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('kitchen-pendant')">
-            <div class="pendant-image" id="kitchen-pendant-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="pendant-image" id="kitchen-pendant-icon" style="background-color: rgb(95,95,95)"></div>
+                    </div>
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Pendant</div>
             <div class="card-back" ></div>
             <div class="card-state" id="kitchen-pendant-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('kitchen-accent')">
-            <div class="led-strip-image" id="kitchen-accent-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="led-strip-image" id="kitchen-accent-icon" style="background-color: rgb(95,95,95)"></div>
+                    </div>
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Accent Lighting</div>
             <div class="card-back" ></div>
             <div class="card-state" id="kitchen-accent-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('kitchen-counter')">
-            <div class="led-strip-image" id="kitchen-counter-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="led-strip-image" id="kitchen-counter-icon" style="background-color: rgb(95,95,95)"></div>
+                    </div>
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Counter Lighting</div>
             <div class="card-back" ></div>
             <div class="card-state" id="kitchen-counter-state">Loading</div>

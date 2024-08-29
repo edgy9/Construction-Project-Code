@@ -3,35 +3,77 @@
 <head>
     <title>Security</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='security.css')}}">
-    <script>
-        async function toggleDevice(device) {
-            const response = await fetch(`/toggle/${device}`, { method: 'POST' });
-            const result = await response.json();
-            if (result.success) {
-                document.getElementById(`${device}-state`).innerText = result.state ? 'On' : 'Off';
-                document.getElementById(`${device}-icon`).style= result.state ? "background-color: yellow" : "background-color: rgb(95,95,95)" ;
-            } else {
-                alert('Failed to toggle device');
-            }
-        }
-       
-
+    <script type="text/javascript">
+        var URI = {{ URIdata|tojson }}
     </script>
+    <script src="/static/security.js"></script>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
 </head>
 <body>
     <div class="main-container">
-        <div class="button-container">
-            <div class="button-card" onclick="toggleDevice('alarm-system')">
-                <div class="image" id="alarm-system-icon" style="background-color: {{ 'yellow' if devices['alarm-system'] else 'rgb(95,95,95)' }}"></div>
-                <div class="text" >Alarm</div>
-                <div class="card-back" ></div>
-                <div class="card-state" id="alarm-system-state">{{ 'On' if devices['alarm-system'] else 'Off' }}</div>
+        <div class="lock-screen-main-container lock">
+            <div class="lock-screen-container">
+                <div class="keypad-main-container">
+                    <div class="keypad-screen-container">
+                        <div class="keypad-screen">
+                            <div class="keypad-text" id="keypad-text-input">_ _ _ _</div>
+                        </div>
+                    </div>
+                    <div class="keypad-container">
+                        <div class="button-card" onclick="KeyPress(1)">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('2')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card"onclick="KeyPress('3')">
+                            <div class="card-back" ></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('4')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('5')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('6')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('7')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('8')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('9')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('del')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('0')">
+                            <div class="card-back"></div>
+                        </div>
+                        <div class="button-card" onclick="KeyPress('enter')">
+                            <div class="card-back"></div>
+                        </div>
+                        
+                    </div>
+                </div>  
             </div>
         </div>
-        <div class="video-container">
-            <img src="/security/video_feed" />
-        </div>
+        <div class="security-main-container menu">
+            <div class="button-container">
+                <div class="button-card" onclick="hideMenu()">
+                    <div class="image" id="alarm-system-icon" style="background-color: yellow"></div>
+                    <div class="text" >Alarm</div>
+                    <div class="card-back" ></div>
+                    <div class="card-state" id="alarm-system-state">on</div>
+                </div>
+            </div>
+            <div class="video-container">                   
+                <img src="/security/video_feed"/>       
+            </div>
+        </div> 
         
     </div>
     

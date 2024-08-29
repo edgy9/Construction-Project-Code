@@ -1,8 +1,9 @@
 
-const ws = new WebSocket("ws://192.168.1.130:6789");
+console.log(URI.URI)
+const ws = new WebSocket(URI.URI);
         ws.onopen = () => {
             console.log("Connected to the WebSocket server");
-            ws.send(`{"reload":1,"page":"${document.getElementById("page").getAttribute("data-page")}"}`);
+            ws.send(`{"operation":"reload","page":"${document.getElementById("page").getAttribute("data-page")}"}`);
         };
         ws.onclose = (event) => {
             ws.send(`colese`);
@@ -60,6 +61,6 @@ const ws = new WebSocket("ws://192.168.1.130:6789");
         function toggleLight(entity) {
             let state = 0
             if (document.getElementById(`${entity}-state`).innerText == "On") {state = 0}else {state = 1};
-            ws.send(`{"num_entities":0,"num_server_entities":1,"entities":[{"entity":"${entity}","state":${state}}],"reload":0,"page":"${document.getElementById("page").getAttribute("data-page")}"}`);
+            ws.send(`{"num_entities":0,"operation":"client_update_lights","num_server_entities":1,"entities":[{"entity":"${entity}","state":${state}}],"reload":0,"page":"${document.getElementById("page").getAttribute("data-page")}"}`);
         }
        

@@ -3,34 +3,73 @@
 <head>
     <title>Bedroom Lights</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='light-controls.css')}}">
+    <script type="text/javascript">
+        var URI = {{ URIdata|tojson }}
+    </script>
     <script src="/static/FrontendWebsocket.js"></script>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
 </head>
 <body>
     <div class="container">
+        
         <div class="button-card" onclick="toggleLight('bedroom-spots')">
-            <div class="spots-image" id="bedroom-spots-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="spots-image" id="bedroom-spots-icon" style="background-color: rgb(95,95,95)"></div>
+                    </div>
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Spots</div>
             <div class="card-back" ></div>
             <div class="card-state" id="bedroom-spots-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('bedroom-pendant')">
-            <div class="pendant-image" id="bedroom-pendant-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="pendant-image" id="bedroom-pendant-icon" style="background-color: rgb(95,95,95)"></div>
+                    </div>
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Pendant</div>
             <div class="card-back" ></div>
             <div class="card-state" id="bedroom-pendant-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('bedroom-accent')">
-            <div class="led-strip-image" id="bedroom-accent-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="led-strip-image" id="bedroom-accent-icon" style="background-color: rgb(95,95,95)"></div>
+                          </div>
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Accent Lighting</div>
             <div class="card-back" ></div>
             <div class="card-state" id="bedroom-accent-state">Loading</div>
         </div>
         <div class="button-card" onclick="toggleLight('bedroom-lamps')">
-            <div class="lamps-image" id="bedroom-lamps-icon" style="background-color: rgb(95,95,95)"></div>
+            <div class="image-grid-container">
+                <div class="image-grid">
+                    <div class="image-container">
+                        <div class="lamps-image" id="bedroom-lamps-icon" style="background-color: rgb(95,95,95)"></div>
+                    </div>   
+                    <div style="width:300px"></div>
+                </div>
+            </div>
             <div class="text" >Lamps</div>
             <div class="card-back" ></div>
             <div class="card-state" id="bedroom-lamps-state">Loading</div>
+        </div>
+        <div class="back-button-container" onclick="location.href = '/home';">
+            <svg>
+                <circle class="back-button" cx="35" cy="35" r="20px">
+                
+            </svg>
+            <div class="back-image">    </div>
         </div>
     </div>
     <div id="page" data-page="bedroom_lights"></div>

@@ -23,37 +23,79 @@
     <div class="container">
         <div class="link-card" onclick="location.href = '/lights';">
             <div class="card-back" >
-                <img src="{{ url_for('static', filename='lightbulb-group.svg')}}" class="white-image">
+                <div class="image-grid-container">
+                    <div class="image-grid">
+                        <div class="image-container">
+                            <div class="lights-image" style="background-color: rgb(255,255,255)"></div>
+                        </div>
+                        <div style="width:300px"></div>
+                    </div>
+                </div>
                 <div class="text" >Lights</div>
             </div>
         </div>
         <div class="link-card" onclick="location.href = '/security';">
             <div class="card-back" >
-                <img src="{{ url_for('static', filename='lock.svg')}}" class="white-image">
+                <div class="image-grid-container">
+                    <div class="image-grid">
+                        <div class="image-container">
+                            <div class="security-image" style="background-color: rgb(255,255,255)"></div>
+                        </div>
+                        <div style="width:300px"></div>
+                    </div>
+                </div>
                 <div class="text" >Security</div>
             </div>
         </div>
         <div class="link-card" onclick="location.href = '/blinds';">
             <div class="card-back" >
-                <img src="{{ url_for('static', filename='blinds.svg')}}" class="white-image">
+                <div class="image-grid-container">
+                    <div class="image-grid">
+                        <div class="image-container">
+                            <div class="blinds-image" style="background-color: rgb(255,255,255)"></div> 
+                        </div>                      
+                        <div style="width:300px"></div>
+                    </div>
+                </div>
                 <div class="text" >Blinds</div>
             </div>
         </div>
         <div class="link-card" onclick="location.href = '/watch';">
             <div class="card-back" >
-                <img src="{{ url_for('static', filename='multimedia.svg')}}" class="white-image">
+                <div class="image-grid-container">
+                    <div class="image-grid">
+                        <div class="image-container">
+                            <div class="watch-image" style="background-color: rgb(255,255,255)"></div>  
+                        </div>                      
+                        <div style="width:300px"></div>
+                    </div>
+                </div>
                 <div class="text" >watch</div>
             </div>
         </div>
         <div class="link-card" onclick="location.href = '/heat';">
             <div class="card-back" >
-                <img src="{{ url_for('static', filename='thermometer.svg')}}" class="white-image">
+                <div class="image-grid-container">
+                    <div class="image-grid">
+                        <div class="image-container">
+                            <div class="heat-image" style="background-color: rgb(255,255,255)"></div> 
+                        </div>                      
+                        <div style="width:300px"></div>
+                    </div>
+                </div>
                 <div class="text" >heat</div>
             </div>
         </div>
         <div class="link-card" onclick="location.href = '/energy';">
             <div class="card-back" >
-                <img src="{{ url_for('static', filename='lightning-bolt.svg')}}" class="white-image">
+                <div class="image-grid-container">
+                    <div class="image-grid">
+                        <div class="image-container">
+                            <div class="energy-image" style="background-color: rgb(255,255,255)"></div> 
+                        </div>               
+                        <div style="width:300px"></div>
+                    </div>
+                </div>
                 <div class="text" >Energy</div>
             </div>
         </div>

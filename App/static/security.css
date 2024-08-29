@@ -12,14 +12,99 @@ body {
     --button-container-columns: 400px 400px;
     --main-container-columns: 50% 50%;
 
- }
- @media only screen and (max-width: 1350px){
-   body {
-
-   --main-container-columns: 100%;
-   --button-container-columns: 50% 50%;
    }
+   @media only screen and (max-width: 1350px){
+     body {
+  
+     --main-container-columns: 100%;
+     --button-container-columns: 50% 50%;
+     }
+  }
+.main-container {
+   display: flex;
+
 }
+.lock-screen-main-container {
+
+   display: absolute;
+   width: 100vw;
+   height: 100vh;
+}
+
+.lock-screen-container {
+   display: flex;
+   position: absolute;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+}
+.keypad-main-container {
+   display: grid;
+   position: relative;
+   width: 370px;
+   height: 90vh;
+   grid-template-rows: 15% 85%;
+
+}
+.keypad-screen-container {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%
+
+}
+
+.keypad-screen {
+   background-color: #1c1c1c;
+   
+   border-radius: 10px;
+   margin: 8px;
+   margin-bottom: 27px;
+   border: 1px solid #343434;
+   height: 100%;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 100%;
+}
+.keypad-text {
+   text-align: center;
+   line-height: 100%;
+   font-size: 5em;
+   height: 100%;
+   width: 100%;
+   
+}
+.keypad-container {
+   position: relative;
+   display: grid;
+   height: 100%;
+   width: 100%;
+   grid-template-columns: auto auto auto;
+   grid-template-rows: auto auto auto auto;
+
+}
+.keypad-button-card {
+   position: relative;
+   max-height: 500px;
+   min-width: 50px;
+}
+.keypad-card-back {
+   
+   background-color: #1c1c1c;
+   text-align: center;
+   border-radius: 10px;
+   margin: 2px;
+   border: 1px solid #343434;
+   vertical-align: sub;
+}
+
+
+
 
 img {
    width: 95%;
@@ -27,11 +112,15 @@ img {
    border-radius: 10px;
    border: 2px solid rgb(252, 243, 243)
 }
- .main-container {
+ .security-main-container {
+    position: absolute;
     display: grid;
-    grid-template-columns:  var(--main-container-columns);
+    grid-template-columns:  auto auto;
     justify-content: center;
-    padding: 10px;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
  }
 
  .video-container {

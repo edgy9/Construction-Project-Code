@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Usage Dashboard</title>
+    <title>Blinds</title>
+    <script type="text/javascript">
+        var URI = {{ URIdata|tojson }}
+    </script>
     <script src="/static/blinds.js"></script>
     <link rel="stylesheet" href="/static/blinds.css">
     
@@ -11,18 +14,18 @@
 <body>
     <div class="MainCenterContainer">
         <div class="MainContainer">
-            <div class="ThirdContainer">
+            <div class="ThirdContainer" id="sitting-room-main-blind-container">
                 <div class="LabelContainer">Sitting Room</div>
                 <div class="CenterContainer">
-                    <div class="Button">Open</div>
+                    <div class="Button" onclick="SendCommandMessage('sitting-room', 100)">Open</div>
                 </div>
                 <div class="CenterContainer" id="sitting-room-svg-container">
 
 
-                    <div class="BlindContainer">
+                    <div class="BlindContainer" id="sitting-room-blind-container">
                         <div class="slider-container" id="sitting-room-slider-container">
                             <input type="range" min="1" max="100" value="30" class="slider" id="sitting-room-blind-command">
-                        </div>
+                        </div> 
                     </div>
                     <div class="BlindContainer">
                         <div class="slider-container">
@@ -31,40 +34,83 @@
                     </div>
 
                     <svg>
-                        
                         <line id="sitting-room-blind-command-line" x1="0" y1="0" x2="0" y2="0" style="stroke:white; stroke-width:6" />
-                        <line id="sitting-room-blind-state-line" x1="0" y1="0" x2="0" y2="0" stroke="gray" />
                         <circle id="sitting-room-blind-roller" class="BlindRoller" cx="0" cy="0" r="20px"></circle>
                         <circle id="sitting-room-blind-roller-inner" class="BlindRollerInner" cx="0" cy="0" r="15px"></circle>
+                    </svg>
+                    <svg class="ghostsvg">
+                        <line class="ghostsvg" id="sitting-room-blind-state-line" x1="0" y1="0" x2="0" y2="0" style="stroke:gray; stroke-width:6" />
                     </svg>
 
                 </div>
                 <div class="CenterContainer">
-                    <div class="Button">Close</div>
+                    <div class="Button" onclick="SendCommandMessage('kitchen', 0)">Close</div>
                 </div>
             </div>
-            <div class="ThirdContainer">
-                <div class="LabelContainer">Sitting Room</div>
+            <div class="ThirdContainer" id="kitchen-main-blind-container">
+                <div class="LabelContainer">Kitchen</div>
                 <div class="CenterContainer">
-                    <div class="Button">Open</div>
+                    <div class="Button" onclick="SendCommandMessage('kitchen', 100)">Open</div>
+                </div>
+                <div class="CenterContainer" id="kitchen-svg-container">
+
+
+                    <div class="BlindContainer" id="kitchen-blind-container">
+                        <div class="slider-container" id="kitchen-slider-container">
+                            <input type="range" min="1" max="100" value="30" class="slider" id="kitchen-blind-command">
+                        </div> 
+                    </div>
+                    <div class="BlindContainer">
+                        <div class="slider-container">
+                            <input type="range" min="1" max="100" value="50" class="ghostslider" id="kitchen-blind-state" disabled>
+                        </div>
+                    </div>
+
+                    <svg>
+                        <line id="kitchen-blind-command-line" x1="0" y1="0" x2="0" y2="0" style="stroke:white; stroke-width:6" />
+                        <circle id="kitchen-blind-roller" class="BlindRoller" cx="0" cy="0" r="20px"></circle>
+                        <circle id="kitchen-blind-roller-inner" class="BlindRollerInner" cx="0" cy="0" r="15px"></circle>
+                    </svg>
+                    <svg class="ghostsvg">
+                        <line class="ghostsvg" id="kitchen-blind-state-line" x1="0" y1="0" x2="0" y2="0" style="stroke:gray; stroke-width:6" />
+                    </svg>
+
                 </div>
                 <div class="CenterContainer">
-                    
-                </div>
-                <div class="CenterContainer">
-                    <div class="Button">Close</div>
+                    <div class="Button" onclick="SendCommandMessage('kitchen', 0)">Close</div>
                 </div>
             </div>
-            <div class="ThirdContainer">
-                <div class="LabelContainer">Sitting Room</div>
+            <div class="ThirdContainer" id="skylight-main-blind-container">
+                <div class="LabelContainer">Skylight</div>
                 <div class="CenterContainer">
-                    <div class="Button">Open</div>
+                    <div class="Button" onclick="SendCommandMessage('skylight', 100)">Open</div>
+                </div>
+                <div class="CenterContainer" id="skylight-svg-container">
+
+
+                    <div class="BlindContainer" id="skylight-blind-container">
+                        <div class="slider-container" id="skylight-slider-container">
+                            <input type="range" min="1" max="100" value="30" class="slider" id="skylight-blind-command">
+                        </div> 
+                    </div>
+                    <div class="BlindContainer">
+                        <div class="slider-container">
+                            <input type="range" min="1" max="100" value="50" class="ghostslider" id="skylight-blind-state" disabled>
+                        </div>
+                    </div>
+
+                    <svg>
+                        <line id="skylight-blind-command-line" x1="0" y1="0" x2="0" y2="0" style="stroke:white; stroke-width:6" />
+                        <circle id="skylight-blind-roller" class="BlindRoller" cx="0" cy="0" r="20px"></circle>
+                        <circle id="skylight-blind-roller-inner" class="BlindRollerInner" cx="0" cy="0" r="15px"></circle>
+                    </svg>
+                    <svg class="ghostsvg">
+                        <line class="ghostsvg" id="skylight-blind-state-line" x1="0" y1="0" x2="0" y2="0" style="stroke:gray; stroke-width:6" />
+                    </svg>
+
                 </div>
                 <div class="CenterContainer">
-                    <div class="BlindContainer"></div>
-                </div>
-                <div class="CenterContainer">
-                    <div class="Button">Close</div>
+                    <div class="Button" onclick="SendCommandMessage('skylight', 0)">Close</div>
                 </div>
             </div>
         </div>

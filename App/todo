@@ -7,5 +7,11 @@ TODO blind controls
 TODO heat - double for 2 floors - slider for control - buttons for delayed finishing etc
 TODO install raspi os on rasp pi
 TODO cv2 person detection
-TODO 
+TODO turn on heating when motion detected
+TODO heat calculations for heat loss / heating cost
+TODO alarm buttons
+TODO alarm page background
+TODO watch page
+TODO heat page
+TODO
 

@@ -3,8 +3,13 @@ import websockets
 
 connected_clients = set()
 
+URI = "127.0.0.1"
+#URI = "192.168.1.126"
+#URI = "10.0.3.44"
+
+
+
 async def handle_client(websocket, path):
-  # Register the new client
   connected_clients.add(websocket)
   #await websocket.send('{"initialize":"True"}')
   #print("new client")
@@ -12,11 +17,10 @@ async def handle_client(websocket, path):
     async for message in websocket:
       await asyncio.wait([asyncio.create_task(client.send(message)) for client in connected_clients])
   finally:
-    # Unregister the client
     connected_clients.remove(websocket)
 
 async def main():
-    server = await websockets.serve(handle_client, "192.168.1.130", 6789)
+    server = await websockets.serve(handle_client, URI, 6789)
     await server.wait_closed()
 
 if __name__ == "__main__":
